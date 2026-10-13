@@ -1,282 +1,344 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-title-fr="Thierno Sadou Diallo | Data Analyst" data-title-en="Thierno Sadou Diallo | Data Analyst">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Thierno Sadou Diallo | Data Analyst</title>
-  <meta name="description" content="Portfolio de Thierno Sadou Diallo, étudiant en Master 2 Statistique (SAAD) à l'Université de Caen. Recherche un stage de fin d'études Data Analyst / Business Analyst dès janvier 2027.">
+  <meta name="description" content="Portfolio de Thierno Sadou Diallo, Master 2 Statistique (SAAD), Université de Caen. Stage de fin d'études Data Analyst / Business Analyst dès janvier 2027. SQL, R, ETL, modélisation, dashboards.">
   <meta property="og:title" content="Thierno Sadou Diallo | Data Analyst">
-  <meta property="og:description" content="Ancien professeur de mathématiques, étudiant en Master 2 Statistique. Projets data : SQL, R, ETL, modélisation, dashboards.">
-  <meta property="og:image" content="assets/photo.jpg">
+  <meta property="og:description" content="Ancien professeur de mathématiques, étudiant en Master 2 Statistique. Études de cas data : Parcoursup, Data Warehouse, enquête statistique.">
+  <meta property="og:image" content="https://thierno-saad-diallo.fr/assets/photo.jpg">
+  <meta property="og:url" content="https://thierno-saad-diallo.fr/">
   <meta property="og:type" content="website">
+  <link rel="canonical" href="https://thierno-saad-diallo.fr/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ============ EN-TÊTE ============ -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#accueil" class="logo">Thierno <span>« Saad »</span> Diallo</a>
-      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav" aria-label="Navigation principale">
-        <a href="#apropos">À propos</a>
-        <a href="#projets">Projets</a>
-        <a href="#parcours">Parcours</a>
-        <a href="#competences">Compétences</a>
-        <a href="#contact" class="nav-cta">Contact</a>
-      </nav>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#accueil" class="logo">Thierno <span>« Saad »</span> Diallo</a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="#apropos"><span class="fr">À propos</span><span class="en">About</span></a>
+      <a href="#projets"><span class="fr">Projets</span><span class="en">Projects</span></a>
+      <a href="#parcours"><span class="fr">Parcours</span><span class="en">Background</span></a>
+      <a href="#competences"><span class="fr">Compétences</span><span class="en">Skills</span></a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <div class="header-tools">
+      <button class="lang-toggle" aria-label="Changer de langue / Switch language"><span class="l-fr">FR</span><span class="l-en">EN</span></button>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main>
+<main>
 
-    <!-- ============ ACCUEIL ============ -->
-    <section id="accueil" class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <p class="badge"><span class="dot"></span> Disponible pour un stage dès janvier 2027</p>
-          <h1>Thierno Sadou Diallo</h1>
-          <p class="hero-role">Futur Data Analyst / Business Analyst</p>
-          <p class="hero-pitch">
-            Ancien professeur de mathématiques, étudiant en Master 2 Statistique (SAAD)
-            à l'Université de Caen. Je transforme des données brutes en
-            <strong>indicateurs fiables</strong> et en <strong>analyses claires</strong> pour la décision.
-          </p>
-          <div class="hero-actions">
-            <a href="assets/CV_Thierno_Diallo_Data_Analyst_SAAD.pdf" class="btn btn-primary" download="CV_Thierno_Sadou_Diallo_Data_Analyst.pdf">Télécharger mon CV</a>
-            <a href="https://www.linkedin.com/in/thierno-sadou-diallo-a30179208" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-          <p class="hero-meta">Caen (14) · Mobile toute la France · Stage de 4 à 6 mois</p>
+  <!-- ================= ACCUEIL ================= -->
+  <section id="accueil" class="hero">
+    <div class="container hero-inner">
+      <div>
+        <p class="badge"><span class="dot"></span>
+          <span class="fr">Disponible pour un stage dès janvier 2027</span>
+          <span class="en">Available for an internship from January 2027</span>
+        </p>
+        <h1>Thierno Sadou Diallo</h1>
+        <p class="hero-role">Data Analyst / Business Analyst</p>
+        <p class="hero-pitch fr">
+          Ancien professeur de mathématiques, étudiant en Master 2 Statistique (SAAD) à l'Université de Caen.
+          Je transforme des données brutes en <strong>indicateurs fiables</strong> et en <strong>analyses claires</strong>
+          pour aider à décider : SQL, R, ETL, modélisation et tableaux de bord.
+        </p>
+        <p class="hero-pitch en">
+          Former mathematics teacher, now a Master's student in Statistics and Decision Analytics (SAAD) at the University of Caen.
+          I turn raw data into <strong>reliable KPIs</strong> and <strong>clear insights</strong>
+          that support decisions: SQL, R, ETL, statistical modelling and dashboards.
+        </p>
+        <div class="hero-actions">
+          <a href="#projets" class="btn btn-primary"><span class="fr">Voir mes projets</span><span class="en">View my projects</span></a>
+          <a href="assets/CV_Thierno_Diallo_Data_Analyst_SAAD.pdf" class="btn btn-ghost" download="CV_Thierno_Sadou_Diallo_Data_Analyst.pdf">
+            <span class="fr">Télécharger mon CV</span><span class="en">Download my CV (French)</span>
+          </a>
         </div>
-        <div class="hero-photo">
-          <img src="assets/photo.jpg" alt="Photo de Thierno Sadou Diallo" width="1200" height="1600">
+        <div class="hero-meta">
+          <span class="chip">📍 Caen (14)</span>
+          <span class="chip"><span class="fr">Mobile toute la France</span><span class="en">Open to relocate in France</span></span>
+          <span class="chip"><span class="fr">Stage de 4 à 6 mois</span><span class="en">4 to 6-month internship</span></span>
         </div>
       </div>
-
-      <div class="container">
-        <ul class="stats">
-          <li><strong>5 ans</strong><span>d'enseignement des maths</span></li>
-          <li><strong>14 079</strong><span>formations Parcoursup analysées</span></li>
-          <li><strong>15 000</strong><span>ventes chargées dans un Data Warehouse</span></li>
-          <li><strong>713</strong><span>répondants à une enquête analysée</span></li>
-        </ul>
+      <div class="hero-photo">
+        <img src="assets/photo.jpg" alt="Thierno Sadou Diallo" width="1200" height="1600">
+        <div class="float-card fc-1"><span class="mono">SELECT kpi FROM data;</span><b>SQL · R · ETL</b></div>
+        <div class="float-card fc-2"><b>Master 2</b><span class="fr">Statistique (SAAD)</span><span class="en">Statistics (SAAD)</span></div>
       </div>
-    </section>
+    </div>
 
-    <!-- ============ À PROPOS ============ -->
-    <section id="apropos" class="section">
-      <div class="container narrow">
-        <p class="eyebrow">À propos</p>
-        <h2>Du tableau noir aux tableaux de bord</h2>
-        <p>
-          Pendant cinq ans, j'ai enseigné les mathématiques au collège et au lycée à Conakry, en Guinée.
-          J'y ai appris une chose essentielle : un résultat n'a de valeur que s'il est compris.
-        </p>
-        <p>
-          Je suis ensuite venu en France pour approfondir les mathématiques (Master MEEF à Bordeaux),
-          puis je me suis orienté vers la statistique et l'analyse de données à l'Université de Caen,
-          en Master <strong>Statistiques appliquées et analyse décisionnelle (SAAD)</strong>.
-        </p>
-        <p>
-          Aujourd'hui, je combine la rigueur du statisticien et la pédagogie de l'enseignant :
-          nettoyer et fiabiliser les données, construire les bons indicateurs, modéliser, puis
-          <strong>expliquer les résultats simplement</strong> à ceux qui doivent décider.
-        </p>
+    <div class="container">
+      <ul class="stats">
+        <li><strong data-count="5">5</strong><span class="fr">ans d'enseignement des mathématiques</span><span class="en">years teaching mathematics</span></li>
+        <li><strong data-count="14079">14 079</strong><span class="fr">formations Parcoursup analysées</span><span class="en">Parcoursup programmes analysed</span></li>
+        <li><strong data-count="15000">15 000</strong><span class="fr">ventes chargées dans un Data Warehouse</span><span class="en">sales loaded into a data warehouse</span></li>
+        <li><strong data-count="713">713</strong><span class="fr">répondants à une enquête analysée</span><span class="en">survey respondents analysed</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= À PROPOS ================= -->
+  <section id="apropos" class="section">
+    <div class="container">
+      <div class="narrow">
+        <p class="eyebrow"><span class="fr">À propos</span><span class="en">About me</span></p>
+        <h2><span class="fr">Du tableau noir aux tableaux de bord</span><span class="en">From blackboards to dashboards</span></h2>
+        <div class="fr">
+          <p>Pendant cinq ans, j'ai enseigné les mathématiques au collège et au lycée à Conakry, en Guinée. J'y ai appris une chose essentielle : un résultat n'a de valeur que s'il est compris.</p>
+          <p>Je suis venu en France approfondir les mathématiques (Master MEEF à Bordeaux), puis je me suis orienté vers la statistique et l'analyse de données à l'Université de Caen, en Master <strong>Statistiques appliquées et analyse décisionnelle (SAAD)</strong>.</p>
+          <p>Aujourd'hui, je combine la rigueur du statisticien et la pédagogie de l'enseignant : fiabiliser les données, construire les bons indicateurs, modéliser, puis <strong>expliquer les résultats simplement</strong> à ceux qui doivent décider.</p>
+        </div>
+        <div class="en">
+          <p>For five years, I taught mathematics in middle and high schools in Conakry, Guinea. It taught me one essential thing: a result is only valuable if people understand it.</p>
+          <p>I moved to France to deepen my mathematics background (MEEF Master's in Bordeaux), then specialised in statistics and data analysis at the University of Caen, in the <strong>Applied Statistics and Decision Analytics (SAAD)</strong> Master's programme.</p>
+          <p>Today, I combine a statistician's rigour with a teacher's clarity: making data reliable, building the right KPIs, modelling, and <strong>explaining results simply</strong> to decision-makers.</p>
+        </div>
         <blockquote class="saad">
-          On m'appelle <strong>Saad</strong> : c'est la prononciation arabe de mon prénom Sadou,
-          et c'est aussi le nom de ma spécialité, le master <strong>SAAD</strong>
-          (<strong>S</strong>tatistiques <strong>A</strong>ppliquées et <strong>A</strong>nalyse
-          <strong>D</strong>écisionnelle). Un hasard qui me ressemble.
+          <span class="fr">On m'appelle <strong>Saad</strong> : c'est la prononciation arabe de mon prénom Sadou, et c'est aussi le nom de ma spécialité, le master <strong>SAAD</strong> (<strong>S</strong>tatistiques <strong>A</strong>ppliquées et <strong>A</strong>nalyse <strong>D</strong>écisionnelle). Un hasard qui me ressemble.</span>
+          <span class="en">People call me <strong>Saad</strong>: it is the Arabic pronunciation of my first name, Sadou, and also the name of my Master's programme, <strong>SAAD</strong> (<strong>S</strong>tatistiques <strong>A</strong>ppliquées et <strong>A</strong>nalyse <strong>D</strong>écisionnelle). A coincidence that suits me well.</span>
         </blockquote>
       </div>
-    </section>
 
-    <!-- ============ PROJETS ============ -->
-    <section id="projets" class="section section-alt">
-      <div class="container">
-        <p class="eyebrow">Projets</p>
-        <h2>Projets data</h2>
-        <p class="section-intro">Des projets réalisés pendant mon master, sur de vraies données.</p>
-
-        <div class="projects">
-
-          <!-- Parcoursup -->
-          <article class="project">
-            <div class="project-head">
-              <h3>Parcoursup : analyse de la tension des formations</h3>
-              <span class="project-date">2025–2026</span>
-            </div>
-            <ul class="tags"><li>R</li><li>Shiny</li><li>ACP / AFDM</li><li>CAH, k-means</li><li>Random Forest</li><li>XGBoost</li></ul>
-            <p class="project-context">
-              <strong>Question :</strong> quelles formations sont les plus demandées, et qu'est-ce qui explique cette tension ?
-            </p>
-            <ul class="project-list">
-              <li>Nettoyage des données nationales 2024 (<strong>14 079 formations</strong>, 118 variables) : pipeline R automatisé, contrôle qualité, traitement des valeurs extrêmes.</li>
-              <li>Focus Normandie 2020–2024 (<strong>près de 3 000 observations</strong>) : KPI de pression, de remplissage, taux de proposition et d'acceptation.</li>
-              <li>Typologie des formations (ACP/AFDM, CAH, k-means) et modélisation de la tension.</li>
-              <li>Restitution dans des <strong>dashboards interactifs R Shiny</strong>.</li>
-            </ul>
-          </article>
-
-          <!-- Data Warehouse -->
-          <article class="project">
-            <div class="project-head">
-              <h3>Data Warehouse « Fil Rouge » : ETL décisionnel</h3>
-              <span class="project-date">2025</span>
-            </div>
-            <ul class="tags"><li>Apache Hop</li><li>SQL</li><li>SQLite</li><li>Schéma en étoile</li><li>SCD Type 2</li></ul>
-            <p class="project-context">
-              <strong>Objectif :</strong> consolider des données opérationnelles dans un entrepôt pour l'analyse décisionnelle. Projet en binôme.
-            </p>
-            <div class="star" aria-label="Schéma en étoile : une table de faits FactVente reliée à quatre dimensions">
-              <span class="star-dim">DimClient</span>
-              <span class="star-dim">DimLieu</span>
-              <span class="star-fact">FactVente</span>
-              <span class="star-dim">DimPrestation</span>
-              <span class="star-dim">DimDateTime</span>
-            </div>
-            <ul class="project-list">
-              <li>Intégration de <strong>plusieurs sources</strong> (base opérationnelle, référentiel des communes, catalogue de prestations).</li>
-              <li><strong>5 pipelines ETL</strong> : nettoyage, lookups, chargement de <strong>15 000 ventes</strong> et 10 000 clients ; historique clients en <strong>SCD Type 2</strong>.</li>
-              <li>Vues SQL analytiques et requêtes OLAP : CA mensuel par ville et catégorie, ventes hors région, durées d'intervention.</li>
-            </ul>
-          </article>
-
-          <!-- Campus sans tabac -->
-          <article class="project">
-            <div class="project-head">
-              <h3>Campus sans tabac : enquête statistique</h3>
-              <span class="project-date">2024–2025</span>
-            </div>
-            <ul class="tags"><li>R</li><li>tidyverse</li><li>ggplot2</li><li>Chi², Fisher</li><li>RMarkdown</li></ul>
-            <p class="project-context">
-              <strong>Question :</strong> la communauté de l'Université de Caen est-elle prête pour un campus sans tabac ?
-            </p>
-            <ul class="project-list">
-              <li>Nettoyage et analyse d'une enquête de <strong>713 répondants</strong> (87 variables), étudiants et personnels.</li>
-              <li><strong>14 tests d'indépendance</strong> (Chi², Fisher) pour profiler fumeurs et vapoteurs.</li>
-              <li>Restitution dans un rapport RMarkdown.</li>
-            </ul>
-            <figure class="chart">
-              <figcaption>Seriez-vous favorable à un campus sans tabac ? <span>(713 répondants)</span></figcaption>
-              <div class="bar"><span class="bar-label">Très favorable</span><span class="bar-track"><span class="bar-fill" style="--v:56%"></span></span><span class="bar-value">56 %</span></div>
-              <div class="bar"><span class="bar-label">Assez favorable</span><span class="bar-track"><span class="bar-fill" style="--v:22%"></span></span><span class="bar-value">22 %</span></div>
-              <div class="bar"><span class="bar-label">Peu favorable</span><span class="bar-track"><span class="bar-fill muted" style="--v:8.4%"></span></span><span class="bar-value">8 %</span></div>
-              <div class="bar"><span class="bar-label">Pas du tout</span><span class="bar-track"><span class="bar-fill muted" style="--v:7.3%"></span></span><span class="bar-value">7 %</span></div>
-              <div class="bar"><span class="bar-label">Ne sait pas</span><span class="bar-track"><span class="bar-fill muted" style="--v:6.3%"></span></span><span class="bar-value">6 %</span></div>
-              <p class="chart-note"><strong>78 % d'adhésion</strong>, alors que 70 % des répondants ne connaissaient pas le dispositif.</p>
-            </figure>
-          </article>
-
-          <!-- Excel -->
-          <article class="project">
-            <div class="project-head">
-              <h3>Accidents de la route : modèle de données Excel</h3>
-              <span class="project-date">2025</span>
-            </div>
-            <ul class="tags"><li>Excel</li><li>Power Query</li><li>Power Pivot</li><li>TCD</li></ul>
-            <ul class="project-list">
-              <li>Import et transformation de <strong>8 tables</strong> avec Power Query.</li>
-              <li>Modèle de données en étoile sous Power Pivot (accidents, causes, dates, lieux, luminosité, météo, état de la route).</li>
-              <li>Analyse des facteurs d'accidents par tableaux croisés dynamiques.</li>
-            </ul>
-          </article>
-
+      <div class="values" style="margin-top:56px">
+        <div class="value">
+          <div class="value-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3Z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+          <h3><span class="fr">Fiabiliser les données</span><span class="en">Make data reliable</span></h3>
+          <p class="fr">Nettoyage, contrôle qualité, gestion des valeurs manquantes et extrêmes, pipelines ETL reproductibles.</p>
+          <p class="en">Cleaning, quality checks, handling missing values and outliers, reproducible ETL pipelines.</p>
+        </div>
+        <div class="value">
+          <div class="value-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+          <h3><span class="fr">Construire les bons KPI</span><span class="en">Build the right KPIs</span></h3>
+          <p class="fr">Traduire une question métier en indicateurs, en analyses statistiques et en modèles explicatifs.</p>
+          <p class="en">Turn a business question into KPIs, statistical analyses and explanatory models.</p>
+        </div>
+        <div class="value">
+          <div class="value-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/><path d="M8 9h8M8 13h5"/></svg></div>
+          <h3><span class="fr">Expliquer simplement</span><span class="en">Explain simply</span></h3>
+          <p class="fr">Cinq ans d'enseignement : restituer des résultats techniques de façon claire, à l'écrit comme à l'oral.</p>
+          <p class="en">Five years of teaching: presenting technical results clearly, in writing and in person.</p>
         </div>
       </div>
-    </section>
-
-    <!-- ============ PARCOURS ============ -->
-    <section id="parcours" class="section">
-      <div class="container narrow">
-        <p class="eyebrow">Parcours</p>
-        <h2>Formation et expérience</h2>
-        <ol class="timeline">
-          <li>
-            <span class="tl-date">2025–2027</span>
-            <h3>Master 2 Statistiques appliquées et analyse décisionnelle (SAAD)</h3>
-            <p>Université de Caen Normandie</p>
-          </li>
-          <li>
-            <span class="tl-date">2024–2025</span>
-            <h3>Master 1 SAAD</h3>
-            <p>Université de Caen Normandie</p>
-          </li>
-          <li>
-            <span class="tl-date">2023–2024</span>
-            <h3>Master 1 MEEF Mathématiques</h3>
-            <p>Université de Bordeaux</p>
-          </li>
-          <li class="tl-work">
-            <span class="tl-date">2018–2023</span>
-            <h3>Professeur de mathématiques</h3>
-            <p>Collèges et lycées, Conakry (Guinée). Préparation des cours et des évaluations, suivi des élèves, vulgarisation de notions abstraites.</p>
-          </li>
-          <li>
-            <span class="tl-date">2015–2018</span>
-            <h3>Licence de mathématiques appliquées</h3>
-            <p>Université Gamal Abdel Nasser de Conakry</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ COMPÉTENCES ============ -->
-    <section id="competences" class="section section-alt">
-      <div class="container">
-        <p class="eyebrow">Compétences</p>
-        <h2>Ce que je sais faire</h2>
-        <div class="skills">
-          <div class="skill-card">
-            <h3>SQL & données</h3>
-            <ul><li>SQL : jointures, agrégations, vues</li><li>SQLite</li><li>Modélisation en étoile</li><li>ETL (Apache Hop)</li><li>SCD Type 2</li><li>Nettoyage et contrôle qualité</li></ul>
-          </div>
-          <div class="skill-card">
-            <h3>BI & visualisation</h3>
-            <ul><li>Power BI, Tableau</li><li>R Shiny, ggplot2</li><li>Excel avancé (TCD)</li><li>Power Query, Power Pivot</li><li>Construction de KPI</li></ul>
-          </div>
-          <div class="skill-card">
-            <h3>Statistique & machine learning</h3>
-            <ul><li>Tests statistiques (Chi², Fisher)</li><li>Régression linéaire</li><li>ACP / AFDM</li><li>CAH, k-means</li><li>Random Forest, XGBoost</li></ul>
-          </div>
-          <div class="skill-card">
-            <h3>Langages & outils</h3>
-            <ul><li>R (tidyverse)</li><li>Python (Pandas, NumPy, scikit-learn)</li><li>SAS</li><li>RMarkdown, LaTeX</li><li>Git</li></ul>
-          </div>
-        </div>
-        <p class="languages"><strong>Langues :</strong> français courant · anglais opérationnel</p>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section id="contact" class="section contact">
-      <div class="container narrow center">
-        <p class="eyebrow">Contact</p>
-        <h2>Travaillons ensemble</h2>
-        <p>
-          Je recherche un <strong>stage de fin d'études de 4 à 6 mois</strong> en Data Analyst ou Business Analyst,
-          à partir de janvier 2027, partout en France.
-        </p>
-        <div class="contact-actions">
-          <a href="mailto:thiernosadoudiallo25@gmail.com" class="btn btn-primary">thiernosadoudiallo25@gmail.com</a>
-          <a href="https://www.linkedin.com/in/thierno-sadou-diallo-a30179208" class="btn btn-ghost" target="_blank" rel="noopener">Mon profil LinkedIn</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year">2026</span> Thierno Sadou Diallo · Caen, France</p>
     </div>
-  </footer>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- ================= PROJETS ================= -->
+  <section id="projets" class="section section-alt">
+    <div class="container">
+      <p class="eyebrow"><span class="fr">Projets</span><span class="en">Projects</span></p>
+      <h2><span class="fr">Études de cas data</span><span class="en">Data case studies</span></h2>
+      <p class="section-intro">
+        <span class="fr">Des projets réalisés sur de vraies données. Chaque étude de cas détaille la question posée, la méthode, les résultats et les limites.</span>
+        <span class="en">Projects built on real data. Each case study explains the question, the method, the results and the limitations.</span>
+      </p>
+
+      <div class="projects">
+
+        <a class="project-card" href="projets/parcoursup.html">
+          <div class="project-visual pv-parcoursup">
+            <svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true">
+              <g fill="rgba(255,255,255,.18)"><rect x="210" y="70" width="22" height="80"/><rect x="242" y="40" width="22" height="110"/><rect x="274" y="55" width="22" height="95"/><rect x="306" y="25" width="22" height="125"/><rect x="338" y="48" width="22" height="102"/></g>
+              <polyline points="200,110 240,85 280,92 320,60 370,72" fill="none" stroke="#7DD3FC" stroke-width="3"/>
+            </svg>
+            <div class="pv-kpi"><b data-num="385676">385 676</b><span class="fr">candidatures en Normandie (2024)</span><span class="en">applications in Normandy (2024)</span></div>
+          </div>
+          <div class="project-body">
+            <div class="project-head"><h3><span class="fr">Parcoursup : la tension des formations</span><span class="en">Parcoursup: demand pressure on programmes</span></h3><span class="project-date">2025–2026</span></div>
+            <ul class="tags"><li>R</li><li>tidyverse</li><li>Shiny</li><li>ACP / PCA</li><li>k-means</li><li>Random Forest</li></ul>
+            <p class="fr">Quelles formations sont les plus demandées et pourquoi ? 14 079 formations nationales et près de 3 000 observations normandes sur 5 ans.</p>
+            <p class="en">Which programmes are in highest demand, and why? 14,079 programmes nationwide and nearly 3,000 records for Normandy over 5 years.</p>
+            <span class="project-link"><span class="fr">Lire l'étude de cas</span><span class="en">Read the case study</span></span>
+          </div>
+        </a>
+
+        <a class="project-card" href="projets/data-warehouse.html">
+          <div class="project-visual pv-dwh">
+            <svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true">
+              <g stroke="rgba(255,255,255,.35)" stroke-width="2"><line x1="300" y1="75" x2="300" y2="22"/><line x1="300" y1="75" x2="230" y2="75"/><line x1="300" y1="75" x2="370" y2="75"/><line x1="300" y1="75" x2="300" y2="128"/></g>
+              <g fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.55)"><rect x="276" y="62" width="48" height="26" rx="5" fill="rgba(255,255,255,.45)"/><rect x="282" y="8" width="36" height="20" rx="4"/><rect x="206" y="65" width="36" height="20" rx="4"/><rect x="358" y="65" width="36" height="20" rx="4"/><rect x="282" y="120" width="36" height="20" rx="4"/></g>
+            </svg>
+            <div class="pv-kpi"><b data-num="15000">15 000</b><span class="fr">ventes dans un schéma en étoile</span><span class="en">sales in a star schema</span></div>
+          </div>
+          <div class="project-body">
+            <div class="project-head"><h3><span class="fr">Data Warehouse « Fil Rouge » : ETL décisionnel</span><span class="en">"Fil Rouge" data warehouse: BI ETL pipeline</span></h3><span class="project-date">2025</span></div>
+            <ul class="tags"><li>SQL</li><li>SQLite</li><li>Apache Hop</li><li><span class="fr">Schéma en étoile</span><span class="en">Star schema</span></li><li>SCD Type 2</li></ul>
+            <p class="fr">Intégration de plusieurs sources dans un entrepôt de données, 5 pipelines ETL et requêtes OLAP pour l'analyse des ventes.</p>
+            <p class="en">Integrating several sources into a data warehouse, with 5 ETL pipelines and OLAP queries for sales analysis.</p>
+            <span class="project-link"><span class="fr">Lire l'étude de cas</span><span class="en">Read the case study</span></span>
+          </div>
+        </a>
+
+        <a class="project-card" href="projets/campus-sans-tabac.html">
+          <div class="project-visual pv-campus">
+            <svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true">
+              <circle cx="310" cy="75" r="48" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="18"/>
+              <circle cx="310" cy="75" r="48" fill="none" stroke="#7DD3FC" stroke-width="18" stroke-dasharray="235 302" transform="rotate(-90 310 75)"/>
+            </svg>
+            <div class="pv-kpi"><b>78 %</b><span class="fr">d'adhésion au campus sans tabac</span><span class="en">support for a smoke-free campus</span></div>
+          </div>
+          <div class="project-body">
+            <div class="project-head"><h3><span class="fr">Campus sans tabac : enquête statistique</span><span class="en">Smoke-free campus: survey analysis</span></h3><span class="project-date">2024–2025</span></div>
+            <ul class="tags"><li>R</li><li>ggplot2</li><li><span class="fr">Chi², Fisher</span><span class="en">Chi-square, Fisher</span></li><li>RMarkdown</li></ul>
+            <p class="fr">713 répondants : profils des fumeurs, adhésion au projet et facteurs associés, testés statistiquement.</p>
+            <p class="en">713 respondents: smoker profiles, support for the project and associated factors, statistically tested.</p>
+            <span class="project-link"><span class="fr">Lire l'étude de cas</span><span class="en">Read the case study</span></span>
+          </div>
+        </a>
+
+        <div class="project-card">
+          <div class="project-visual pv-excel">
+            <svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true">
+              <g stroke="rgba(255,255,255,.28)"><path d="M200 20h180M200 50h180M200 80h180M200 110h180M200 140h180"/><path d="M240 10v140M290 10v140M340 10v140"/></g>
+              <rect x="290" y="50" width="50" height="30" fill="rgba(255,255,255,.35)"/>
+            </svg>
+            <div class="pv-kpi"><b>8</b><span class="fr">tables reliées sous Power Pivot</span><span class="en">tables linked in Power Pivot</span></div>
+          </div>
+          <div class="project-body">
+            <div class="project-head"><h3><span class="fr">Accidents de la route : modèle de données Excel</span><span class="en">Road accidents: Excel data model</span></h3><span class="project-date">2025</span></div>
+            <ul class="tags"><li>Excel</li><li>Power Query</li><li>Power Pivot</li><li><span class="fr">TCD</span><span class="en">Pivot tables</span></li></ul>
+            <p class="fr">Import et transformation de 8 tables avec Power Query, modèle en étoile (accidents, causes, dates, lieux, météo, luminosité, état de la route) et analyse par tableaux croisés dynamiques.</p>
+            <p class="en">Importing and transforming 8 tables with Power Query, building a star-schema model (accidents, causes, dates, places, weather, lighting, road condition) and analysing it with pivot tables.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout" style="margin-top:28px">
+        <span class="status"><span class="fr">En cours</span><span class="en">In progress</span></span>
+        <span class="fr"> <b>Dashboard Power BI</b> sur les données du Data Warehouse : modèle en étoile, mesures DAX et rapport interactif sur les ventes.</span>
+        <span class="en"> <b>Power BI dashboard</b> on the data warehouse: star-schema model, DAX measures and an interactive sales report.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARCOURS ================= -->
+  <section id="parcours" class="section">
+    <div class="container narrow">
+      <p class="eyebrow"><span class="fr">Parcours</span><span class="en">Background</span></p>
+      <h2><span class="fr">Formation et expérience</span><span class="en">Education and experience</span></h2>
+      <ol class="timeline">
+        <li>
+          <span class="tl-date">2025–2027</span>
+          <h3><span class="fr">Master 2 Statistiques appliquées et analyse décisionnelle (SAAD)</span><span class="en">Master's (2nd year) in Applied Statistics and Decision Analytics (SAAD)</span></h3>
+          <p><span class="fr">Université de Caen Normandie</span><span class="en">University of Caen Normandy</span></p>
+        </li>
+        <li>
+          <span class="tl-date">2024–2025</span>
+          <h3><span class="fr">Master 1 SAAD</span><span class="en">Master's (1st year), SAAD</span></h3>
+          <p><span class="fr">Université de Caen Normandie</span><span class="en">University of Caen Normandy</span></p>
+        </li>
+        <li>
+          <span class="tl-date">2023–2024</span>
+          <h3><span class="fr">Master 1 MEEF Mathématiques</span><span class="en">Master's (1st year) in Mathematics Education (MEEF)</span></h3>
+          <p><span class="fr">Université de Bordeaux</span><span class="en">University of Bordeaux</span></p>
+        </li>
+        <li class="tl-work">
+          <span class="tl-date">2018–2023</span>
+          <h3><span class="fr">Professeur de mathématiques</span><span class="en">Mathematics teacher</span></h3>
+          <p class="fr">Collèges et lycées, Conakry (Guinée). Préparation des cours et des évaluations, suivi des élèves, vulgarisation de notions abstraites.</p>
+          <p class="en">Middle and high schools, Conakry (Guinea). Lesson and assessment design, student progress tracking, explaining abstract concepts to non-specialists.</p>
+        </li>
+        <li>
+          <span class="tl-date">2015–2018</span>
+          <h3><span class="fr">Licence de mathématiques appliquées</span><span class="en">Bachelor's degree in Applied Mathematics</span></h3>
+          <p><span class="fr">Université Gamal Abdel Nasser de Conakry</span><span class="en">Gamal Abdel Nasser University of Conakry</span></p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= COMPÉTENCES ================= -->
+  <section id="competences" class="section section-alt">
+    <div class="container">
+      <p class="eyebrow"><span class="fr">Compétences</span><span class="en">Skills</span></p>
+      <h2><span class="fr">Ma boîte à outils</span><span class="en">My toolkit</span></h2>
+      <p class="section-intro"><span class="fr">À droite de chaque outil : le projet où je l'ai utilisé.</span><span class="en">Next to each tool: the project where I used it.</span></p>
+      <div class="skills">
+        <div class="skill-card">
+          <h3><span class="fr">SQL & données</span><span class="en">SQL & data</span></h3>
+          <ul>
+            <li>SQL <small>Data Warehouse</small></li>
+            <li>SQLite <small>Data Warehouse</small></li>
+            <li><span class="fr">Schéma en étoile</span><span class="en">Star schema</span> <small>DWH, Excel</small></li>
+            <li>ETL (Apache Hop) <small>Data Warehouse</small></li>
+            <li>SCD Type 2 <small>Data Warehouse</small></li>
+            <li><span class="fr">Qualité des données</span><span class="en">Data quality</span> <small>Parcoursup</small></li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="fr">BI & visualisation</span><span class="en">BI & visualisation</span></h3>
+          <ul>
+            <li>R Shiny <small>Parcoursup</small></li>
+            <li>ggplot2 <small>Campus, Parcoursup</small></li>
+            <li>Power Query, Power Pivot <small><span class="fr">Accidents</span><span class="en">Accidents</span></small></li>
+            <li><span class="fr">Excel avancé (TCD)</span><span class="en">Advanced Excel (pivot tables)</span> <small><span class="fr">Accidents</span><span class="en">Accidents</span></small></li>
+            <li>Power BI <small><span class="fr">en cours</span><span class="en">in progress</span></small></li>
+            <li>Tableau <small><span class="fr">cours</span><span class="en">coursework</span></small></li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="fr">Statistique & ML</span><span class="en">Statistics & ML</span></h3>
+          <ul>
+            <li><span class="fr">Tests (Chi², Fisher)</span><span class="en">Tests (Chi-square, Fisher)</span> <small>Campus</small></li>
+            <li><span class="fr">Régression linéaire</span><span class="en">Linear regression</span> <small>Parcoursup</small></li>
+            <li>ACP / AFDM <small>Parcoursup</small></li>
+            <li>CAH, k-means <small>Parcoursup</small></li>
+            <li>Random Forest, XGBoost <small>Parcoursup</small></li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3><span class="fr">Langages & outils</span><span class="en">Languages & tools</span></h3>
+          <ul>
+            <li>R (tidyverse) <small><span class="fr">tous projets</span><span class="en">all projects</span></small></li>
+            <li>Python (Pandas, scikit-learn) <small><span class="fr">cours</span><span class="en">coursework</span></small></li>
+            <li>SAS <small><span class="fr">cours</span><span class="en">coursework</span></small></li>
+            <li>RMarkdown, LaTeX <small><span class="fr">rapports</span><span class="en">reports</span></small></li>
+            <li>Git, GitHub <small><span class="fr">ce site</span><span class="en">this website</span></small></li>
+          </ul>
+        </div>
+      </div>
+      <p class="languages"><strong><span class="fr">Langues :</span><span class="en">Languages:</span></strong>
+        <span class="fr">français courant · anglais opérationnel (lecture et rédaction techniques)</span>
+        <span class="en">French (fluent) · English (working proficiency: technical reading and writing)</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="section contact">
+    <div class="container narrow center">
+      <p class="eyebrow">Contact</p>
+      <h2><span class="fr">Travaillons ensemble</span><span class="en">Let's work together</span></h2>
+      <p class="fr">Je recherche un <strong>stage de fin d'études de 4 à 6 mois</strong> en Data Analyst ou Business Analyst, à partir de janvier 2027, partout en France.</p>
+      <p class="en">I am looking for a <strong>4 to 6-month end-of-studies internship</strong> as a Data Analyst or Business Analyst, starting January 2027, anywhere in France.</p>
+      <div class="contact-actions">
+        <a href="mailto:thiernosadoudiallo25@gmail.com" class="btn btn-light">thiernosadoudiallo25@gmail.com</a>
+        <a href="https://www.linkedin.com/in/thierno-sadou-diallo-a30179208" class="btn btn-outline-light" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Thiernosadou25" class="btn btn-outline-light" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span class="year">2026</span> Thierno Sadou Diallo · Caen, France ·
+      <span class="fr">Site construit à la main (HTML, CSS, JavaScript) et publié avec GitHub et Netlify.</span>
+      <span class="en">Hand-built website (HTML, CSS, JavaScript), published with GitHub and Netlify.</span>
+    </p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

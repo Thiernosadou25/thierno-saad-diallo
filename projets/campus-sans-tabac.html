@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="fr" data-title-fr="Campus sans tabac : enquête statistique | Thierno Sadou Diallo" data-title-en="Smoke-free campus: survey analysis | Thierno Sadou Diallo">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus sans tabac : enquête statistique | Thierno Sadou Diallo</title>
+  <meta name="description" content="Étude de cas : analyse d'une enquête de 713 répondants sur un projet de campus sans tabac à l'Université de Caen, en R (tests du Chi² et de Fisher, ggplot2, RMarkdown).">
+  <link rel="canonical" href="https://thierno-saad-diallo.fr/projets/campus-sans-tabac.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">Thierno <span>« Saad »</span> Diallo</a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="../index.html#projets"><span class="fr">Projets</span><span class="en">Projects</span></a>
+      <a href="parcoursup.html">Parcoursup</a>
+      <a href="data-warehouse.html">Data Warehouse</a>
+      <a href="../index.html#contact" class="nav-cta">Contact</a>
+    </nav>
+    <div class="header-tools">
+      <button class="lang-toggle" aria-label="Changer de langue / Switch language"><span class="l-fr">FR</span><span class="l-en">EN</span></button>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="case-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html#projets"><span class="fr">← Tous les projets</span><span class="en">← All projects</span></a></p>
+      <p class="eyebrow"><span class="fr">Étude de cas · Enquête statistique</span><span class="en">Case study · Survey analysis</span></p>
+      <h1><span class="fr">Campus sans tabac : la communauté universitaire est-elle prête ?</span><span class="en">Smoke-free campus: is the university community ready?</span></h1>
+      <p class="lead fr">Analyse d'une enquête menée auprès des étudiants et des personnels du campus 5 de l'Université de Caen, pour éclairer la décision de passer en campus sans tabac.</p>
+      <p class="lead en">Analysis of a survey of students and staff at Campus 5 of the University of Caen, to inform the decision to become a smoke-free campus.</p>
+      <dl class="case-meta">
+        <div><dt><span class="fr">Contexte</span><span class="en">Context</span></dt><dd><span class="fr">Projet de Master 1</span><span class="en">Master's project (1st year)</span></dd></div>
+        <div><dt><span class="fr">Période</span><span class="en">Period</span></dt><dd>2024–2025</dd></div>
+        <div><dt><span class="fr">Outils</span><span class="en">Tools</span></dt><dd>R, dplyr, ggplot2, RMarkdown</dd></div>
+        <div><dt><span class="fr">Données</span><span class="en">Data</span></dt><dd><span class="fr">713 répondants, 87 variables</span><span class="en">713 respondents, 87 variables</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="case">
+    <div class="container case-grid">
+      <aside class="toc">
+        <p><span class="fr">Sommaire</span><span class="en">Contents</span></p>
+        <a href="#question"><span class="fr">La question</span><span class="en">The question</span></a>
+        <a href="#methode"><span class="fr">La méthode</span><span class="en">Method</span></a>
+        <a href="#resultats"><span class="fr">Résultats</span><span class="en">Results</span></a>
+        <a href="#recommandations"><span class="fr">Recommandations</span><span class="en">Recommendations</span></a>
+      </aside>
+
+      <div class="case-content">
+
+        <section id="question">
+          <h2><span class="fr">La question</span><span class="en">The question</span></h2>
+          <p class="fr">Un campus sans tabac va au-delà de la loi : on s'abstient de fumer sur tout le site, avec un accompagnement des fumeurs. Avant de se lancer, l'université veut savoir <strong>qui fume, qui vapote, et si la communauté soutiendrait le projet</strong>.</p>
+          <p class="en">A smoke-free campus goes beyond the law: nobody smokes anywhere on site, and smokers are offered support. Before committing, the university wants to know <strong>who smokes, who vapes, and whether the community would support the project</strong>.</p>
+          <div class="kpis">
+            <div class="kpi"><b>713</b><span class="fr">répondants</span><span class="en">respondents</span></div>
+            <div class="kpi"><b><span class="fr">16,5 %</span><span class="en">16.5%</span></b><span class="fr">fument, au moins de temps en temps</span><span class="en">smoke, at least occasionally</span></div>
+            <div class="kpi"><b><span class="fr">15,4 %</span><span class="en">15.4%</span></b><span class="fr">vapotent</span><span class="en">vape</span></div>
+            <div class="kpi"><b><span class="fr">78 %</span><span class="en">78%</span></b><span class="fr">favorables au campus sans tabac</span><span class="en">support a smoke-free campus</span></div>
+          </div>
+        </section>
+
+        <section id="methode">
+          <h2><span class="fr">La méthode</span><span class="en">Method</span></h2>
+          <ol class="steps">
+            <li class="fr"><strong>Nettoyage</strong> : recodage des statuts (étudiants, personnels), calcul de l'âge et classes d'âge, suppression des valeurs aberrantes, harmonisation des modalités.</li>
+            <li class="en"><strong>Cleaning</strong>: recoding status (students, staff), computing age and age groups, removing outliers, harmonising answer categories.</li>
+            <li class="fr"><strong>Analyse univariée</strong> : tris à plat et visualisations ggplot2 pour chaque question.</li>
+            <li class="en"><strong>Univariate analysis</strong>: frequency tables and ggplot2 charts for every question.</li>
+            <li class="fr"><strong>Analyse bivariée</strong> : tableaux croisés et <strong>14 tests d'indépendance</strong> (Chi², ou test exact de Fisher quand les effectifs sont faibles).</li>
+            <li class="en"><strong>Bivariate analysis</strong>: cross-tabulations and <strong>14 independence tests</strong> (Chi-square, or Fisher's exact test when counts are small).</li>
+            <li class="fr"><strong>Restitution</strong> : rapport RMarkdown exporté en HTML, PDF et Word.</li>
+            <li class="en"><strong>Reporting</strong>: RMarkdown report exported to HTML, PDF and Word.</li>
+          </ol>
+        </section>
+
+        <section id="resultats">
+          <h2><span class="fr">Résultats</span><span class="en">Results</span></h2>
+
+          <div class="two-col">
+            <div class="chart-card">
+              <h3><span class="fr">Seriez-vous favorable à un campus sans tabac ?</span><span class="en">Would you support a smoke-free campus?</span></h3>
+              <p class="chart-sub"><span class="fr">713 répondants</span><span class="en">713 respondents</span></p>
+              <div class="chart-box"><canvas id="chartAvis"></canvas></div>
+            </div>
+            <div class="chart-card">
+              <h3><span class="fr">Adhésion selon le statut tabagique</span><span class="en">Support by smoking status</span></h3>
+              <p class="chart-sub"><span class="fr">% de répondants « très » ou « assez » favorables</span><span class="en">% of respondents "very" or "rather" in favour</span></p>
+              <div class="chart-box"><canvas id="chartFumeurs"></canvas></div>
+            </div>
+          </div>
+
+          <div class="callout ok">
+            <p class="fr"><b>Résultat clé :</b> <b>85,7 %</b> des non-fumeurs soutiennent le projet, contre <b>39 %</b> des fumeurs. L'écart est hautement significatif (Chi² = 122,5 ; p &lt; 0,001). Le projet a donc une large majorité, mais il devra convaincre et accompagner les fumeurs.</p>
+            <p class="en"><b>Key finding:</b> <b>85.7%</b> of non-smokers support the project, versus <b>39%</b> of smokers. The difference is highly significant (Chi-square = 122.5; p &lt; 0.001). The project has strong majority support, but it will need to win over and support smokers.</p>
+          </div>
+
+          <div class="chart-card">
+            <h3><span class="fr">Étudiants et personnels : des comportements proches</span><span class="en">Students and staff: similar behaviours</span></h3>
+            <p class="chart-sub"><span class="fr">% de fumeurs, de vapoteurs et de favorables dans chaque groupe</span><span class="en">% of smokers, vapers and supporters in each group</span></p>
+            <div class="chart-box"><canvas id="chartGroupes"></canvas></div>
+            <p class="chart-note"><span class="fr">507 étudiants et 175 personnels (enseignants, doctorants, administratifs et techniques).</span><span class="en">507 students and 175 staff (teachers, PhD students, administrative and technical staff).</span></p>
+          </div>
+          <ul>
+            <li class="fr">La proportion de fumeurs ne diffère pas significativement entre étudiants (17,2 %) et personnels (15,4 %) : Chi² = 0,17, p = 0,68. Une campagne de prévention commune est donc pertinente.</li>
+            <li class="en">The share of smokers does not differ significantly between students (17.2%) and staff (15.4%): Chi-square = 0.17, p = 0.68. A single prevention campaign for everyone makes sense.</li>
+            <li class="fr">Le vapotage est plus répandu chez les étudiants (17,8 % contre 9,7 %).</li>
+            <li class="en">Vaping is more common among students (17.8% versus 9.7%).</li>
+            <li class="fr"><strong>70 % des répondants ne connaissaient pas</strong> le concept de campus sans tabac avant l'enquête : un vrai besoin d'information.</li>
+            <li class="en"><strong>70% of respondents had never heard</strong> of the smoke-free campus concept before the survey: there is a real need for information.</li>
+          </ul>
+        </section>
+
+        <section id="recommandations">
+          <h2><span class="fr">Recommandations</span><span class="en">Recommendations</span></h2>
+          <ul>
+            <li class="fr"><strong>Communiquer d'abord</strong> : expliquer le projet, puisque la majorité ne le connaissait pas.</li>
+            <li class="en"><strong>Communicate first</strong>: explain the project, since most people had never heard of it.</li>
+            <li class="fr"><strong>Accompagner les fumeurs</strong> : seulement 39 % d'entre eux sont favorables. Proposer de l'aide à l'arrêt rendra la mesure plus acceptable.</li>
+            <li class="en"><strong>Support smokers</strong>: only 39% of them are in favour. Offering help to quit will make the policy more acceptable.</li>
+            <li class="fr"><strong>Intégrer le vapotage</strong> dans la réflexion, en particulier auprès des étudiants.</li>
+            <li class="en"><strong>Include vaping</strong> in the policy, especially for students.</li>
+          </ul>
+          <p class="fr" style="color:var(--muted);font-size:.9rem">Seuls des résultats agrégés sont publiés ici : les réponses individuelles de l'enquête restent confidentielles.</p>
+          <p class="en" style="color:var(--muted);font-size:.9rem">Only aggregated results are published here: individual survey answers remain confidential.</p>
+        </section>
+
+        <div class="next-case">
+          <a href="data-warehouse.html" class="btn btn-ghost">← Data Warehouse</a>
+          <a href="../index.html#projets" class="btn btn-primary"><span class="fr">Tous les projets →</span><span class="en">All projects →</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>© <span class="year">2026</span> Thierno Sadou Diallo · <a href="../index.html">thierno-saad-diallo.fr</a></p></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="../script.js"></script>
+<script>
+(() => {
+  const T = window.chartTheme;
+  let charts = [];
+  function draw() {
+    charts.forEach((c) => c.destroy());
+    const en = document.documentElement.lang === "en";
+    const pct = (v) => (en ? v.toFixed(1) + "%" : v.toFixed(1).replace(".", ",") + " %");
+    charts = [
+      new Chart(document.getElementById("chartAvis"), {
+        type: "doughnut",
+        data: {
+          labels: en ? ["Strongly in favour", "Rather in favour", "Rather against", "Strongly against", "Don't know"]
+                     : ["Très favorable", "Assez favorable", "Peu favorable", "Pas du tout favorable", "Ne sait pas"],
+          datasets: [{ data: [56.0, 22.0, 8.4, 7.3, 6.3], backgroundColor: [T.accent, T.sky, "#F59E0B", "#EF4444", T.grey], borderWidth: 2, borderColor: "#fff" }]
+        },
+        options: { cutout: "62%", plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { label: (c) => c.label + " : " + pct(c.parsed) } } } }
+      }),
+      new Chart(document.getElementById("chartFumeurs"), {
+        type: "bar",
+        data: { labels: en ? ["Non-smokers", "Smokers"] : ["Non-fumeurs", "Fumeurs"],
+          datasets: [{ data: [85.7, 39.0], backgroundColor: [T.accent, "#F59E0B"], borderRadius: 8, maxBarThickness: 90 }] },
+        options: { plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => pct(c.parsed.y) } } },
+          scales: { y: { min: 0, max: 100, grid: { color: T.grid }, ticks: { callback: (v) => v + (en ? "%" : " %") } }, x: { grid: { display: false } } } }
+      }),
+      new Chart(document.getElementById("chartGroupes"), {
+        type: "bar",
+        data: {
+          labels: en ? ["Smokers", "Vapers", "In favour"] : ["Fumeurs", "Vapoteurs", "Favorables"],
+          datasets: [
+            { label: en ? "Students" : "Étudiants", data: [17.2, 17.8, 80.1], backgroundColor: T.accent, borderRadius: 6 },
+            { label: en ? "Staff" : "Personnels", data: [15.4, 9.7, 73.7], backgroundColor: T.teal, borderRadius: 6 }
+          ]
+        },
+        options: { plugins: { tooltip: { callbacks: { label: (c) => c.dataset.label + " : " + pct(c.parsed.y) } } },
+          scales: { y: { min: 0, max: 100, grid: { color: T.grid }, ticks: { callback: (v) => v + (en ? "%" : " %") } }, x: { grid: { display: false } } } }
+      })
+    ];
+  }
+  draw();
+  document.addEventListener("langchange", draw);
+})();
+</script>
+</body>
+</html>

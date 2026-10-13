@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fr" data-title-fr="Data Warehouse « Fil Rouge » | Thierno Sadou Diallo" data-title-en="&quot;Fil Rouge&quot; Data Warehouse | Thierno Sadou Diallo">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Warehouse « Fil Rouge » | Thierno Sadou Diallo</title>
+  <meta name="description" content="Étude de cas : conception d'un entrepôt de données en schéma en étoile, 5 pipelines ETL sous Apache Hop, SCD Type 2 et requêtes OLAP en SQL.">
+  <link rel="canonical" href="https://thierno-saad-diallo.fr/projets/data-warehouse.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">Thierno <span>« Saad »</span> Diallo</a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="../index.html#projets"><span class="fr">Projets</span><span class="en">Projects</span></a>
+      <a href="parcoursup.html">Parcoursup</a>
+      <a href="campus-sans-tabac.html"><span class="fr">Campus sans tabac</span><span class="en">Smoke-free campus</span></a>
+      <a href="../index.html#contact" class="nav-cta">Contact</a>
+    </nav>
+    <div class="header-tools">
+      <button class="lang-toggle" aria-label="Changer de langue / Switch language"><span class="l-fr">FR</span><span class="l-en">EN</span></button>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="case-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html#projets"><span class="fr">← Tous les projets</span><span class="en">← All projects</span></a></p>
+      <p class="eyebrow"><span class="fr">Étude de cas · Business Intelligence</span><span class="en">Case study · Business Intelligence</span></p>
+      <h1><span class="fr">Data Warehouse « Fil Rouge » : de la base opérationnelle à l'analyse décisionnelle</span><span class="en">"Fil Rouge" data warehouse: from an operational database to decision-ready analytics</span></h1>
+      <p class="lead fr">Conception d'un entrepôt de données en schéma en étoile, alimenté par 5 pipelines ETL, pour analyser l'activité d'une entreprise de prestations (ventes, clients, lieux, temps).</p>
+      <p class="lead en">Designing a star-schema data warehouse fed by 5 ETL pipelines to analyse the activity of a service company (sales, customers, locations, time).</p>
+      <dl class="case-meta">
+        <div><dt><span class="fr">Contexte</span><span class="en">Context</span></dt><dd><span class="fr">Projet de Master 2, en binôme</span><span class="en">Master's project, team of two</span></dd></div>
+        <div><dt><span class="fr">Période</span><span class="en">Period</span></dt><dd>2025</dd></div>
+        <div><dt><span class="fr">Outils</span><span class="en">Tools</span></dt><dd>Apache Hop 2.9, SQL, SQLite</dd></div>
+        <div><dt><span class="fr">Volume</span><span class="en">Volume</span></dt><dd><span class="fr">15 000 ventes, 10 000 clients</span><span class="en">15,000 sales, 10,000 customers</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="case">
+    <div class="container case-grid">
+      <aside class="toc">
+        <p><span class="fr">Sommaire</span><span class="en">Contents</span></p>
+        <a href="#objectif"><span class="fr">L'objectif</span><span class="en">The goal</span></a>
+        <a href="#modele"><span class="fr">Le modèle en étoile</span><span class="en">Star schema</span></a>
+        <a href="#etl"><span class="fr">Les pipelines ETL</span><span class="en">ETL pipelines</span></a>
+        <a href="#analyses"><span class="fr">Les analyses</span><span class="en">Analytics</span></a>
+        <a href="#suite"><span class="fr">La suite</span><span class="en">Next steps</span></a>
+      </aside>
+
+      <div class="case-content">
+
+        <section id="objectif">
+          <h2><span class="fr">L'objectif</span><span class="en">The goal</span></h2>
+          <p class="fr">Une entreprise de prestations (dépannage, installation…) stocke ses ventes et ses clients dans une base opérationnelle, pensée pour enregistrer les transactions, pas pour les analyser. Le but : <strong>consolider ces données avec des référentiels externes dans un entrepôt décisionnel</strong>, pour répondre rapidement à des questions métier comme « quel est le chiffre d'affaires mensuel par ville et par catégorie ? ».</p>
+          <p class="en">A service company (repairs, installations, etc.) stores its sales and customers in an operational database, designed to record transactions, not to analyse them. The goal: <strong>consolidate this data with external reference data into an analytical data warehouse</strong>, so that business questions such as "what is the monthly revenue by city and category?" can be answered quickly.</p>
+          <div class="kpis">
+            <div class="kpi"><b><span class="fr">15 000</span><span class="en">15,000</span></b><span class="fr">ventes (table de faits)</span><span class="en">sales (fact table)</span></div>
+            <div class="kpi"><b><span class="fr">10 000</span><span class="en">10,000</span></b><span class="fr">clients historisés</span><span class="en">customers with history</span></div>
+            <div class="kpi"><b><span class="fr">35 384</span><span class="en">35,384</span></b><span class="fr">communes (référentiel géographique)</span><span class="en">municipalities (geo reference)</span></div>
+            <div class="kpi"><b><span class="fr">1,58 M</span><span class="en">1.58M</span></b><span class="fr">lignes dans la dimension temps</span><span class="en">rows in the time dimension</span></div>
+          </div>
+        </section>
+
+        <section id="modele">
+          <h2><span class="fr">Le modèle en étoile</span><span class="en">The star schema</span></h2>
+          <p class="fr">Une table de faits centrale, <strong>FactVente</strong> (prix, durée, dates de début et de fin), reliée à quatre dimensions. Les clés étrangères et des index garantissent l'intégrité et la rapidité des requêtes.</p>
+          <p class="en">A central fact table, <strong>FactVente</strong> (price, duration, start and end dates), linked to four dimensions. Foreign keys and indexes guarantee integrity and query speed.</p>
+          <div class="star-svg">
+            <svg viewBox="0 0 640 330" role="img" aria-label="Schéma en étoile : FactVente au centre, reliée à DimClient, DimLieu, DimPrestation et DimDateTime">
+              <g stroke="#94A3B8" stroke-width="2"><line x1="320" y1="165" x2="320" y2="62"/><line x1="320" y1="165" x2="122" y2="165"/><line x1="320" y1="165" x2="518" y2="165"/><line x1="320" y1="165" x2="320" y2="268"/></g>
+              <g font-family="Inter, sans-serif">
+                <rect x="232" y="128" width="176" height="74" rx="10" fill="#0F2A4A"/>
+                <text x="320" y="156" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">FactVente</text>
+                <text x="320" y="178" text-anchor="middle" fill="#BFD3F2" font-size="11">prix · durée · début · fin</text>
+                <g fill="#EEF4FF" stroke="#2563EB"><rect x="236" y="14" width="168" height="56" rx="9"/><rect x="18" y="138" width="168" height="56" rx="9"/><rect x="454" y="138" width="168" height="56" rx="9"/><rect x="236" y="260" width="168" height="56" rx="9"/></g>
+                <g fill="#0F2A4A" font-size="13.5" font-weight="700" text-anchor="middle"><text x="320" y="38">DimDateTime</text><text x="102" y="162">DimClient</text><text x="538" y="162">DimLieu</text><text x="320" y="284">DimPrestation</text></g>
+                <g fill="#5B6778" font-size="10.5" text-anchor="middle"><text x="320" y="56">année · trimestre · mois · heure</text><text x="102" y="180">SCD Type 2 (historique)</text><text x="538" y="180">ville · département · région</text><text x="320" y="302">code · libellé · catégorie</text></g>
+              </g>
+            </svg>
+          </div>
+          <div class="callout">
+            <p class="fr"><b>SCD Type 2 sur les clients :</b> quand un client déménage, l'ancienne version n'est pas écrasée. Une nouvelle ligne est créée avec des dates de validité, ce qui permet d'analyser chaque vente avec l'adresse du client <em>au moment de la vente</em>.</p>
+            <p class="en"><b>SCD Type 2 on customers:</b> when a customer moves, the old record is not overwritten. A new row is created with validity dates, so each sale can be analysed with the customer's address <em>at the time of the sale</em>.</p>
+          </div>
+        </section>
+
+        <section id="etl">
+          <h2><span class="fr">Les pipelines ETL</span><span class="en">The ETL pipelines</span></h2>
+          <p class="fr">Cinq pipelines Apache Hop alimentent l'entrepôt, dans l'ordre des dépendances :</p>
+          <p class="en">Five Apache Hop pipelines load the warehouse, in dependency order:</p>
+          <ol class="steps">
+            <li><strong>pipeline_dates</strong> : <span class="fr">génération de la dimension temps (date et heure).</span><span class="en">generating the time dimension (date and time).</span></li>
+            <li><strong>pipeline_geography</strong> : <span class="fr">chargement du référentiel des communes (code postal, INSEE, département, région).</span><span class="en">loading the municipality reference data (postcode, INSEE code, department, region).</span></li>
+            <li><strong>pipeline_prestations</strong> : <span class="fr">catalogue des prestations et de leurs catégories.</span><span class="en">service catalogue and categories.</span></li>
+            <li><strong>pipeline_clients</strong> : <span class="fr">clients avec historisation SCD Type 2.</span><span class="en">customers with SCD Type 2 history tracking.</span></li>
+            <li><strong>pipeline_fact_ventes</strong> : <span class="fr">chargement des ventes avec recherches de correspondance (lookups) vers chaque dimension.</span><span class="en">loading sales with lookups to each dimension.</span></li>
+          </ol>
+          <pre class="code"><span class="c">-- Vue analytique : CA mensuel par ville et catégorie / Monthly revenue by city and category</span>
+<span class="k">CREATE VIEW</span> v_CA_mensuel_par_ville_cat <span class="k">AS</span>
+<span class="k">SELECT</span> d.year <span class="k">AS</span> annee, d.month <span class="k">AS</span> mois, l.ville, p.categorie,
+       <span class="k">COUNT</span>(*)                  <span class="k">AS</span> nb_prestations,
+       <span class="k">ROUND</span>(<span class="k">SUM</span>(f.prix), <span class="s">2</span>)         <span class="k">AS</span> chiffre_affaires,
+       <span class="k">ROUND</span>(<span class="k">AVG</span>(f.duree_minutes), <span class="s">2</span>) <span class="k">AS</span> duree_moyenne
+<span class="k">FROM</span> FactVente f
+<span class="k">JOIN</span> DimDateTime   d <span class="k">ON</span> f.debut_key = d.datetime_key
+<span class="k">JOIN</span> DimLieu       l <span class="k">ON</span> f.lieu_intervention_key = l.lieu_key
+<span class="k">JOIN</span> DimPrestation p <span class="k">ON</span> f.prestation_key = p.prestation_key
+<span class="k">GROUP BY</span> d.year, d.month, l.ville, p.categorie;</pre>
+        </section>
+
+        <section id="analyses">
+          <h2><span class="fr">Les analyses</span><span class="en">Analytics</span></h2>
+          <p class="fr">Une fois l'entrepôt chargé, les questions métier se traduisent en requêtes OLAP simples et rapides :</p>
+          <p class="en">Once the warehouse is loaded, business questions become simple, fast OLAP queries:</p>
+          <div class="kpis">
+            <div class="kpi"><b>149 min</b><span class="fr">durée moyenne d'une intervention</span><span class="en">average service duration</span></div>
+            <div class="kpi"><b>704</b><span class="fr">prestations hors région du client (4,7 %)</span><span class="en">services outside the customer's region (4.7%)</span></div>
+            <div class="kpi"><b><span class="fr">180 052 €</span><span class="en">€180,052</span></b><span class="fr">CA cumulé des mois de janvier</span><span class="en">total January revenue</span></div>
+            <div class="kpi"><b>82</b><span class="fr">prestations terminées entre 12 h et 13 h en mars 2020</span><span class="en">services ending between 12pm and 1pm in March 2020</span></div>
+          </div>
+          <div class="chart-card">
+            <h3><span class="fr">Chiffre d'affaires du mois de janvier, par année</span><span class="en">January revenue by year</span></h3>
+            <p class="chart-sub"><span class="fr">Résultat de la requête OLAP sur la vue analytique (en euros)</span><span class="en">Output of the OLAP query on the analytical view (in euros)</span></p>
+            <div class="chart-box"><canvas id="chartJanvier"></canvas></div>
+          </div>
+        </section>
+
+        <section id="suite">
+          <h2><span class="fr">La suite</span><span class="en">Next steps</span></h2>
+          <p class="fr">L'entrepôt est prêt pour la restitution visuelle. Je construis actuellement un <strong>dashboard Power BI</strong> connecté à ce modèle en étoile : mesures DAX (CA, panier moyen, durée moyenne), filtres par période, région et catégorie.</p>
+          <p class="en">The warehouse is ready for visual reporting. I am currently building a <strong>Power BI dashboard</strong> on top of this star schema: DAX measures (revenue, average basket, average duration) and filters by period, region and category.</p>
+          <p class="fr" style="color:var(--muted);font-size:.9rem">Projet réalisé en binôme avec Mamadou Amirou Diallo, Master 2 SAAD, Université de Caen Normandie.</p>
+          <p class="en" style="color:var(--muted);font-size:.9rem">Team project with Mamadou Amirou Diallo, SAAD Master's programme, University of Caen Normandy.</p>
+        </section>
+
+        <div class="next-case">
+          <a href="parcoursup.html" class="btn btn-ghost"><span class="fr">← Parcoursup</span><span class="en">← Parcoursup</span></a>
+          <a href="campus-sans-tabac.html" class="btn btn-primary"><span class="fr">Projet suivant : Campus sans tabac →</span><span class="en">Next: Smoke-free campus →</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>© <span class="year">2026</span> Thierno Sadou Diallo · <a href="../index.html">thierno-saad-diallo.fr</a></p></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="../script.js"></script>
+<script>
+(() => {
+  const T = window.chartTheme;
+  let chart;
+  function draw() {
+    if (chart) chart.destroy();
+    const en = document.documentElement.lang === "en";
+    const nf = (v) => v.toLocaleString(en ? "en-US" : "fr-FR") + " €";
+    chart = new Chart(document.getElementById("chartJanvier"), {
+      type: "bar",
+      data: { labels: ["2019", "2020", "2021"],
+        datasets: [{ label: en ? "January revenue" : "CA de janvier", data: [63487, 55964, 60601],
+          backgroundColor: [T.accent, T.grey, T.teal], borderRadius: 8, maxBarThickness: 90 }] },
+      options: { plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => nf(c.parsed.y) } } },
+        scales: { y: { beginAtZero: true, grid: { color: T.grid }, ticks: { callback: (v) => nf(v) } }, x: { grid: { display: false } } } }
+    });
+  }
+  draw();
+  document.addEventListener("langchange", draw);
+})();
+</script>
+</body>
+</html>

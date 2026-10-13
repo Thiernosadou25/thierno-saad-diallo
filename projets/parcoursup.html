@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="fr" data-title-fr="Parcoursup : la tension des formations | Thierno Sadou Diallo" data-title-en="Parcoursup: demand pressure on programmes | Thierno Sadou Diallo">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parcoursup : la tension des formations | Thierno Sadou Diallo</title>
+  <meta name="description" content="Étude de cas : analyse de la tension des formations Parcoursup (données nationales 2024 et Normandie 2020-2024) en R : nettoyage, KPI, ACP, clustering et modélisation.">
+  <link rel="canonical" href="https://thierno-saad-diallo.fr/projets/parcoursup.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">Thierno <span>« Saad »</span> Diallo</a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="../index.html#projets"><span class="fr">Projets</span><span class="en">Projects</span></a>
+      <a href="data-warehouse.html">Data Warehouse</a>
+      <a href="campus-sans-tabac.html"><span class="fr">Campus sans tabac</span><span class="en">Smoke-free campus</span></a>
+      <a href="../index.html#contact" class="nav-cta">Contact</a>
+    </nav>
+    <div class="header-tools">
+      <button class="lang-toggle" aria-label="Changer de langue / Switch language"><span class="l-fr">FR</span><span class="l-en">EN</span></button>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="case-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html#projets"><span class="fr">← Tous les projets</span><span class="en">← All projects</span></a></p>
+      <p class="eyebrow"><span class="fr">Étude de cas · Analyse statistique</span><span class="en">Case study · Statistical analysis</span></p>
+      <h1><span class="fr">Parcoursup : quelles formations sont sous tension, et pourquoi ?</span><span class="en">Parcoursup: which programmes face the highest demand, and why?</span></h1>
+      <p class="lead fr">Analyse de la demande d'admission dans l'enseignement supérieur : données nationales 2024 et focus Normandie sur 5 sessions (2020 à 2024).</p>
+      <p class="lead en">An analysis of higher-education admission demand in France: national data for 2024 and a focus on Normandy over 5 sessions (2020 to 2024).</p>
+      <dl class="case-meta">
+        <div><dt><span class="fr">Contexte</span><span class="en">Context</span></dt><dd><span class="fr">Projet de Master 2</span><span class="en">Master's project</span></dd></div>
+        <div><dt><span class="fr">Période</span><span class="en">Period</span></dt><dd>2025–2026</dd></div>
+        <div><dt><span class="fr">Outils</span><span class="en">Tools</span></dt><dd>R, tidyverse, FactoMineR, Shiny</dd></div>
+        <div><dt><span class="fr">Données</span><span class="en">Data</span></dt><dd><span class="fr">Open data Parcoursup (MESR)</span><span class="en">Parcoursup open data (French ministry)</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="case">
+    <div class="container case-grid">
+      <aside class="toc">
+        <p><span class="fr">Sommaire</span><span class="en">Contents</span></p>
+        <a href="#question"><span class="fr">La question</span><span class="en">The question</span></a>
+        <a href="#donnees"><span class="fr">Les données</span><span class="en">The data</span></a>
+        <a href="#methode"><span class="fr">La méthode</span><span class="en">Method</span></a>
+        <a href="#resultats"><span class="fr">Résultats</span><span class="en">Results</span></a>
+        <a href="#limites"><span class="fr">Limites et leçons</span><span class="en">Limits and lessons</span></a>
+      </aside>
+
+      <div class="case-content">
+
+        <section id="question">
+          <h2><span class="fr">La question</span><span class="en">The question</span></h2>
+          <p class="fr">Chaque année, des centaines de milliers de lycéens formulent leurs vœux sur Parcoursup. Certaines formations reçoivent des dizaines de candidatures par place, d'autres peinent à se remplir. L'objectif : <strong>mesurer cette tension, suivre son évolution et identifier les facteurs qui l'expliquent</strong> (filière, sélectivité, territoire, statut public ou privé).</p>
+          <p class="en">Every year, hundreds of thousands of students apply through Parcoursup. Some programmes receive dozens of applications per seat, while others struggle to fill up. The goal: <strong>measure this pressure, track how it changes over time and identify the factors that explain it</strong> (field, selectivity, region, public or private status).</p>
+          <div class="kpis">
+            <div class="kpi"><b data-num="14079">14 079</b><span class="fr">formations en France (2024)</span><span class="en">programmes nationwide (2024)</span></div>
+            <div class="kpi"><b data-num="2994">2 994</b><span class="fr">observations Normandie (2020–2024)</span><span class="en">Normandy records (2020–2024)</span></div>
+            <div class="kpi"><b data-num="385676">385 676</b><span class="fr">candidatures en Normandie (2024)</span><span class="en">applications in Normandy (2024)</span></div>
+            <div class="kpi"><b data-num="33018">33 018</b><span class="fr">places en Normandie (2024)</span><span class="en">seats in Normandy (2024)</span></div>
+          </div>
+        </section>
+
+        <section id="donnees">
+          <h2><span class="fr">Les données</span><span class="en">The data</span></h2>
+          <p class="fr">Fichiers open data Parcoursup du ministère de l'Enseignement supérieur : une ligne par formation et par session, <strong>118 variables</strong> (capacité, candidats, propositions, admis, profils des candidats, boursiers, etc.).</p>
+          <p class="en">Parcoursup open data files from the French Ministry of Higher Education: one row per programme and per session, with <strong>118 variables</strong> (capacity, applicants, offers, admissions, applicant profiles, scholarship holders, etc.).</p>
+          <p class="fr">Principaux défis : formats de nombres hétérogènes, pourcentages hors bornes, colonnes en doublon, valeurs extrêmes (formations à très faible capacité) et noms de colonnes qui changent d'une année à l'autre.</p>
+          <p class="en">Main challenges: inconsistent number formats, out-of-range percentages, duplicated columns, extreme values (programmes with very small capacity) and column names that change from one year to the next.</p>
+        </section>
+
+        <section id="methode">
+          <h2><span class="fr">La méthode</span><span class="en">Method</span></h2>
+          <ol class="steps">
+            <li class="fr"><strong>Nettoyage automatisé en R</strong> : détection du séparateur, conversion des types, suppression des doublons, pourcentages bornés à [0, 100], contrôles qualité.</li>
+            <li class="en"><strong>Automated cleaning in R</strong>: delimiter detection, type conversion, duplicate removal, percentages bounded to [0, 100], quality checks.</li>
+            <li class="fr"><strong>Construction des KPI</strong> : pression (candidats / capacité), taux de remplissage (admis / capacité), taux de proposition, taux d'acceptation, détection du surbooking.</li>
+            <li class="en"><strong>KPI design</strong>: pressure (applicants / capacity), fill rate (admitted / capacity), offer rate, acceptance rate, overbooking flag.</li>
+            <li class="fr"><strong>Traitement des valeurs extrêmes</strong> : winsorisation à 1 % pour éviter que quelques formations minuscules faussent les analyses.</li>
+            <li class="en"><strong>Outlier handling</strong>: 1% winsorisation so that a few tiny programmes do not distort the analysis.</li>
+            <li class="fr"><strong>Analyse multivariée</strong> : ACP / AFDM puis classification (CAH et k-means) pour dégager des profils types de formations.</li>
+            <li class="en"><strong>Multivariate analysis</strong>: PCA / FAMD followed by clustering (hierarchical clustering and k-means) to identify typical programme profiles.</li>
+            <li class="fr"><strong>Modélisation</strong> : régression linéaire sur log(1 + pression), puis Random Forest et XGBoost, et restitution dans des dashboards R Shiny.</li>
+            <li class="en"><strong>Modelling</strong>: linear regression on log(1 + pressure), then Random Forest and XGBoost, presented in R Shiny dashboards.</li>
+          </ol>
+          <pre class="code"><span class="c"># Extrait du pipeline de nettoyage (R) / Excerpt from the cleaning pipeline (R)</span>
+add_kpis &lt;- <span class="k">function</span>(df) {
+  df %&gt;% mutate(
+    pression    = if_else(capacite &gt; 0, candidats_total / capacite, NA_real_),
+    remplissage = if_else(capacite &gt; 0, admis_total / capacite, NA_real_),
+    taux_accept = if_else(propositions &gt; 0, admis_total / propositions, NA_real_)
+  )
+}
+
+winsor &lt;- <span class="k">function</span>(x, p = <span class="s">0.01</span>) {
+  q &lt;- quantile(x, probs = c(p, <span class="s">1</span> - p), na.rm = <span class="k">TRUE</span>)
+  pmin(pmax(x, q[<span class="s">1</span>]), q[<span class="s">2</span>])
+}</pre>
+        </section>
+
+        <section id="resultats">
+          <h2><span class="fr">Résultats</span><span class="en">Results</span></h2>
+
+          <div class="chart-card">
+            <h3><span class="fr">Normandie : candidatures et places, 2020–2024</span><span class="en">Normandy: applications and seats, 2020–2024</span></h3>
+            <p class="chart-sub"><span class="fr">Total des candidatures (barres) et pression globale, candidatures par place (ligne)</span><span class="en">Total applications (bars) and overall pressure, applications per seat (line)</span></p>
+            <div class="chart-box"><canvas id="chartYears"></canvas></div>
+            <p class="chart-note"><span class="fr">Source : open data Parcoursup, calculs personnels en R sur 2 994 lignes.</span><span class="en">Source: Parcoursup open data, my own calculations in R on 2,994 rows.</span></p>
+          </div>
+          <p class="fr">Les places restent stables (environ <strong>33 000</strong> par an) alors que la demande a culminé en 2023 avec plus de <strong>401 000 candidatures</strong>. La pression globale tourne autour de <strong>12 candidatures par place</strong>. Dans le même temps, le taux de remplissage est passé de 90,6 % en 2020 à 84,2 % en 2024 : beaucoup de candidats, mais des places qui ne trouvent pas toutes preneur.</p>
+          <p class="en">The number of seats stays stable (around <strong>33,000</strong> per year), while demand peaked in 2023 at over <strong>401,000 applications</strong>. Overall pressure stays around <strong>12 applications per seat</strong>. Meanwhile, the fill rate dropped from 90.6% in 2020 to 84.2% in 2024: many applicants, yet not every seat is filled.</p>
+
+          <div class="chart-card">
+            <h3><span class="fr">Normandie 2024 : pression médiane par type de formation</span><span class="en">Normandy 2024: median pressure by programme type</span></h3>
+            <p class="chart-sub"><span class="fr">Nombre médian de candidatures par place (entre parenthèses : nombre de formations)</span><span class="en">Median applications per seat (in brackets: number of programmes)</span></p>
+            <div class="chart-box tall"><canvas id="chartFilieres"></canvas></div>
+          </div>
+          <div class="callout ok">
+            <p class="fr"><b>À retenir :</b> les formations les plus tendues sont les <b>IFSI (soins infirmiers, 25 candidatures par place)</b>, PASS et CPGE. Les BTS sont de loin les plus nombreux (283 formations) mais beaucoup moins tendus (7,5). La tension dépend donc surtout du <b>type de filière et de sa sélectivité</b>, bien plus que du volume de l'offre.</p>
+            <p class="en"><b>Key takeaway:</b> the highest-pressure programmes are <b>nursing schools (IFSI, 25 applications per seat)</b>, PASS (medicine) and CPGE (preparatory classes). BTS programmes are by far the most numerous (283) but much less competitive (7.5). Pressure is mainly driven by <b>programme type and selectivity</b>, far more than by the size of the offer.</p>
+          </div>
+        </section>
+
+        <section id="limites">
+          <h2><span class="fr">Limites et leçons</span><span class="en">Limits and lessons</span></h2>
+          <div class="callout warn">
+            <p class="fr"><b>Une fuite de données détectée.</b> Mes premiers modèles Random Forest et XGBoost affichaient des scores presque parfaits. En analysant l'importance des variables, j'ai constaté qu'ils utilisaient le nombre de candidats et la capacité, c'est-à-dire les éléments qui servent à <b>calculer</b> la pression : le modèle recalculait la réponse au lieu de la prédire. Leçon retenue : ne jamais faire confiance à un score trop beau sans vérifier les variables utilisées.</p>
+            <p class="en"><b>Data leakage detected.</b> My first Random Forest and XGBoost models showed near-perfect scores. By analysing feature importance, I found they were using the number of applicants and the capacity, the very inputs used to <b>compute</b> pressure: the model was recalculating the answer instead of predicting it. Lesson learned: never trust a score that looks too good without checking which variables drive it.</p>
+          </div>
+          <ul>
+            <li class="fr">Le modèle explicatif retenu (régression linéaire sur les données nationales 2024 : filière, sélectivité, région, statut, capacité) explique environ <strong>34 % de la variance</strong> (R² = 0,34) : la tension dépend aussi de facteurs absents des données (réputation, localisation fine, débouchés).</li>
+            <li class="en">The retained explanatory model (linear regression on 2024 national data: field, selectivity, region, status, capacity) explains about <strong>34% of the variance</strong> (R² = 0.34): pressure also depends on factors that are not in the data (reputation, precise location, career prospects).</li>
+            <li class="fr">Une même personne peut postuler à plusieurs formations : la « pression » mesure une demande de vœux, pas un nombre d'individus.</li>
+            <li class="en">One student can apply to several programmes: "pressure" measures applications, not individual people.</li>
+            <li class="fr">Prochaine étape : reconstruire les modèles prédictifs uniquement avec des variables connues <em>avant</em> la campagne (approche « ex ante »).</li>
+            <li class="en">Next step: rebuild the predictive models using only variables known <em>before</em> the admission campaign (an "ex ante" approach).</li>
+          </ul>
+        </section>
+
+        <div class="next-case">
+          <a href="../index.html#projets" class="btn btn-ghost"><span class="fr">← Tous les projets</span><span class="en">← All projects</span></a>
+          <a href="data-warehouse.html" class="btn btn-primary"><span class="fr">Projet suivant : Data Warehouse →</span><span class="en">Next: Data Warehouse →</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>© <span class="year">2026</span> Thierno Sadou Diallo · <a href="../index.html">thierno-saad-diallo.fr</a></p></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="../script.js"></script>
+<script>
+(() => {
+  const T = window.chartTheme;
+  const years = ["2020", "2021", "2022", "2023", "2024"];
+  const cand = [374559, 401135, 399840, 401404, 385676];
+  const pressure = [11.35, 12.08, 12.06, 12.05, 11.68];
+  const fil = [
+    ["IFSI", "Nursing (IFSI)", 25.3, 31], ["PASS", "PASS (medicine)", 20.4, 5], ["CPGE", "CPGE", 17.2, 32],
+    ["Licence LAS", "Bachelor LAS", 14.1, 21], ["BUT", "BUT", 13.0, 55], ["École d'ingénieur", "Engineering school", 12.6, 24],
+    ["Autre formation", "Other", 8.7, 44], ["BTS", "BTS", 7.5, 283], ["École de commerce", "Business school", 6.4, 7],
+    ["Licence", "Bachelor", 6.2, 106], ["EFTS", "EFTS (social work)", 3.6, 10]
+  ];
+  let charts = [];
+  function draw() {
+    charts.forEach((c) => c.destroy());
+    const en = document.documentElement.lang === "en";
+    const nf = (v) => v.toLocaleString(en ? "en-US" : "fr-FR");
+    charts = [
+      new Chart(document.getElementById("chartYears"), {
+        data: {
+          labels: years,
+          datasets: [
+            { type: "bar", label: en ? "Applications" : "Candidatures", data: cand, backgroundColor: "rgba(37,99,235,.75)", borderRadius: 6, yAxisID: "y" },
+            { type: "line", label: en ? "Applications per seat" : "Candidatures par place", data: pressure, borderColor: T.teal, backgroundColor: T.teal, tension: .3, pointRadius: 4, yAxisID: "y1" }
+          ]
+        },
+        options: {
+          interaction: { mode: "index", intersect: false },
+          scales: {
+            y: { beginAtZero: false, min: 300000, grid: { color: T.grid }, ticks: { callback: (v) => nf(v) } },
+            y1: { position: "right", min: 10, max: 13, grid: { display: false } },
+            x: { grid: { display: false } }
+          },
+          plugins: { tooltip: { callbacks: { label: (c) => c.dataset.label + " : " + nf(c.parsed.y) } } }
+        }
+      }),
+      new Chart(document.getElementById("chartFilieres"), {
+        type: "bar",
+        data: {
+          labels: fil.map((f) => (en ? f[1] : f[0]) + " (" + f[3] + ")"),
+          datasets: [{ label: en ? "Median applications per seat" : "Candidatures par place (médiane)", data: fil.map((f) => f[2]),
+            backgroundColor: fil.map((f) => (f[2] >= 12.6 ? T.accent : T.grey)), borderRadius: 5 }]
+        },
+        options: { indexAxis: "y", plugins: { legend: { display: false } }, scales: { x: { grid: { color: T.grid } }, y: { grid: { display: false } } } }
+      })
+    ];
+  }
+  draw();
+  document.addEventListener("langchange", draw);
+})();
+</script>
+</body>
+</html>
